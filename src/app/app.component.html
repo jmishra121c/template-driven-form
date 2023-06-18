@@ -65,7 +65,8 @@
         name="mobile"
         #mobile="ngModel"
         required
-        maxlength="12"
+        maxlength="10"
+        minlength="10"
         [pattern]="integerRegex"
         [ngClass]="{ error: mobile.errors && mobile.touched }"
       />
@@ -73,8 +74,14 @@
         <small class="text-danger" *ngIf="mobile.errors['required']"
           >Mobile number is required</small
         >
-        <small class="text-danger" *ngIf="mobile.errors['pattern']"
-          >Mobile number must be positive integer</small
+        <small
+          class="text-danger"
+          *ngIf="
+            mobile.errors['pattern'] ||
+            mobile.errors['maxlength'] ||
+            mobile.errors['minlength']
+          "
+          >Please enter valid mobile number of 10 digit</small
         >
       </div>
     </div>
