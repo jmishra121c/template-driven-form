@@ -12,9 +12,17 @@
         name="fName"
         #fName="ngModel"
         required
-        maxlength="50"
+        minlength="5"
         [ngClass]="{ error: fName.errors && fName.touched }"
       />
+      <div *ngIf="fName.errors && fName.touched">
+        <small class="text-danger" *ngIf="fName.errors['required']"
+          >First Name is required</small
+        >
+        <small class="text-danger" *ngIf="fName.errors['minlength']"
+          >Minimum length 5 required</small
+        >
+      </div>
     </div>
     <div class="mb-3">
       <label for="lastName" class="form-label">Last Name</label>
@@ -61,6 +69,14 @@
         [pattern]="integerRegex"
         [ngClass]="{ error: mobile.errors && mobile.touched }"
       />
+      <div *ngIf="mobile.errors && mobile.touched">
+        <small class="text-danger" *ngIf="mobile.errors['required']"
+          >Mobile number is required</small
+        >
+        <small class="text-danger" *ngIf="mobile.errors['pattern']"
+          >Mobile number must be positive integer</small
+        >
+      </div>
     </div>
     <div class="mb-3">
       <label for="age" class="form-label">Age</label>
@@ -78,6 +94,16 @@
         [pattern]="integerRegex"
         [ngClass]="{ error: age.errors && age.touched }"
       />
+      <div *ngIf="age.errors && age.touched">
+        <small class="text-danger" *ngIf="age.errors['required']"
+          >Age is required</small
+        >
+        <small
+          class="text-danger"
+          *ngIf="age.errors['min'] || age.errors['max']"
+          >Age must be between 18 to 60</small
+        >
+      </div>
     </div>
     <div class="mb-3">
       <input

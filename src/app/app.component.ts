@@ -16,6 +16,6 @@ export class AppComponent {
   registerFn() {
     console.log(this.form);
   }
-  integerRegex = '^[1-9]\\d*$';
+  integerRegex = /^\d*$/;
   title = 'template-driven-form';
 }
